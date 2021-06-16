@@ -3,8 +3,10 @@ import {getSubredditPosts} from '../api/reddit';
 
 const initialState = {
     posts: [],
+    error: false,
     searchTerm: '',
     subreddit: 'rabbits',
+    imageOnlyToggle: false
 };
 
 const redditSlice = createSlice({
@@ -13,9 +15,10 @@ const redditSlice = createSlice({
     reducers: {
         setPosts(state, action) {
             state.posts = action.payload;
+            state.error = false;
         },
-        getPosts(state) {
-            state.isLoading = true;
+        setPostsFail(state) {
+            state.error = true;
         },
         setSearchTerm(state, action) {
             state.searchTerm = action.payload;
@@ -23,6 +26,9 @@ const redditSlice = createSlice({
         setSubreddit(state, action) {
             state.subreddit = action.payload;
             state.searchTerm = '';
+        },
+        toggleImages(state, action) {
+            state.imageOnlyToggle = !state.imageOnlyToggle ;
         }
     }
 });
@@ -31,7 +37,7 @@ export const {
     setPosts,
     setSearchTerm,
     setSubreddit,
-    getPosts,
+    setPostsFail,
 } = redditSlice.actions;
 
 export default redditSlice.reducer;
@@ -42,6 +48,7 @@ export const fetchPosts = (subreddit) => async (dispatch) => {
         dispatch(setPosts(posts));
 
     } catch(error) {
+        dispatch(setPostsFail())
         console.log(error)
     }
 };
@@ -49,6 +56,7 @@ export const fetchPosts = (subreddit) => async (dispatch) => {
 export const selectPosts = (state) => state.reddit.posts;
 const selectSearchTerm = (state) => state.reddit.searchTerm;
 export const selectSubreddit = (state) => state.reddit.subreddit;
+export const selectError = (state) => state.reddit.error;
 
 export const selectFilteredPosts = createSelector(
     [selectPosts, selectSearchTerm],
