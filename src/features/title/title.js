@@ -8,7 +8,7 @@ function Title() {
 
     return (
         <h1>
-             /r/{subreddit}
+             /r/ {subreddit}
         </h1>
     )
 };
