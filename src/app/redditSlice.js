@@ -27,7 +27,7 @@ const redditSlice = createSlice({
             state.subreddit = action.payload;
             state.searchTerm = '';
         },
-        toggleImages(state, action) {
+        toggleImages(state) {
             state.imageOnlyToggle = !state.imageOnlyToggle ;
         }
     }
@@ -38,6 +38,7 @@ export const {
     setSearchTerm,
     setSubreddit,
     setPostsFail,
+    toggleImages
 } = redditSlice.actions;
 
 export default redditSlice.reducer;
@@ -57,6 +58,7 @@ export const selectPosts = (state) => state.reddit.posts;
 const selectSearchTerm = (state) => state.reddit.searchTerm;
 export const selectSubreddit = (state) => state.reddit.subreddit;
 export const selectError = (state) => state.reddit.error;
+export const selectImageToggle = (state) => state.reddit.imageOnlyToggle;
 
 export const selectFilteredPosts = createSelector(
     [selectPosts, selectSearchTerm],

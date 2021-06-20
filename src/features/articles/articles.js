@@ -2,6 +2,8 @@ import React from 'react';
 import Thumbnail from '../../components/thumbnails';
 import './articles.css';
 
+
+
 function Article(props) {
 
     const percentage = props.article.upvote_ratio *100;
