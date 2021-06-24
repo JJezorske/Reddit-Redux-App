@@ -17,12 +17,12 @@ function Article(props) {
     const thumb = props.article.thumbnail;
 
         return (
-            <article>
+            <article className="articles">
                 <a href={"https://www.reddit.com/" + props.article.permalink} target="_blank" rel="noreferrer">
                     <h3>{props.article.title}</h3>
                     <Thumbnail src={thumb} alt={props.article.title} />
                 </a>
-                <p className={ratio()}>{percentage}% upvoted</p>
+                <p className={ratio(percentage)}>{percentage}% upvoted</p>
             </article>
         )
 

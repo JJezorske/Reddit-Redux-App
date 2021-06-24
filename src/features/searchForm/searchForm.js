@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSubreddit} from '../../app/redditSlice';
+import './searchForm.css';
 
 const SearchForm = () => {
     const [searchTermLocal, setSearchTermLocal] = useState('');
@@ -23,8 +24,9 @@ const SearchForm = () => {
     return (
         <form className='form' onSubmit={onFormSubmit}>
             <input type='text' placeholder='Search for different subreddit' value={searchTermLocal} onChange={onSearchTermChange} />
-            <button
-            type='submit' onClick={onFormSubmit}>Search</button>
+            <button 
+                className= 'submit' type='submit' onClick={onFormSubmit}>Search
+            </button>
         </form>
     );
 };

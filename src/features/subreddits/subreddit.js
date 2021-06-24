@@ -17,7 +17,7 @@ const Subreddit = (props) => {
 
     useEffect(() => {
         dispatch(fetchPosts(subreddit));
-    }, [subreddit]);
+    }, [dispatch, subreddit]);
 
     if (error) {
         return (
@@ -37,7 +37,7 @@ const Subreddit = (props) => {
 
     if (imageToggle === true) {
 
-        const imagePosts = posts.filter(post => post.data.thumbnail !== 'self');
+        const imagePosts = posts.filter(post => post.data.thumbnail !== 'self' || "");
         return (
             <div className='articles'>
              {
